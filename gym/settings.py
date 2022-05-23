@@ -46,8 +46,9 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "drf_yasg",
-    "exercise",
     "authentication",
+    "exercise",
+    "muscle_groups",
 ]
 
 MIDDLEWARE = [

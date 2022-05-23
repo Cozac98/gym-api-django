@@ -1,3 +1,4 @@
+import email
 from rest_framework import serializers
 from django.contrib.auth import get_user_model  # If used custom user model
 
@@ -6,16 +7,10 @@ UserModel = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
 
-    password = serializers.CharField(write_only=True)
-
-    def create(self, validated_data):
-
-        user = UserModel.objects.create_user(
-            username=validated_data["username"],
-            password=validated_data["password"],
-        )
-
-        return user
+    password = serializers.CharField(write_only=True, min_length=8)
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+    email = serializers.EmailField(required=True)
 
     class Meta:
         model = UserModel
@@ -24,4 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
             "id",
             "username",
             "password",
+            "first_name",
+            "last_name",
+            "email",
         )
