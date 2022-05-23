@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-
+from django_filters.rest_framework import DjangoFilterBackend
 from exercise.models import Exercise
 from exercise.serializers import ExerciseSerializer, ExerciseWithRelationSerializer
 
@@ -9,6 +9,8 @@ from exercise.serializers import ExerciseSerializer, ExerciseWithRelationSeriali
 class ListCreateExercise(ListCreateAPIView):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["muscle_group"]
 
 
 class RetrieveUpdateDeleteExercise(RetrieveUpdateDestroyAPIView):

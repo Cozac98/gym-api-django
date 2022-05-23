@@ -1,12 +1,12 @@
-from .views import ListCreateExercise, RetrieveUpdateDeleteExercise
+from .views import ListCreateRoutine, RetrieveUpdateDeleteRoutine
 from django.urls import path
 
 
 urlpatterns = [
-    path("", ListCreateExercise.as_view(), name="list-create-exercises"),
+    path("", ListCreateRoutine.as_view(), name="list-create-routines"),
     path(
         "<int:pk>/",
-        RetrieveUpdateDeleteExercise.as_view(),
-        name="list-create-exercises",
+        RetrieveUpdateDeleteRoutine.as_view(),
+        name="retrieve-update-delete-routine",
     ),
 ]
