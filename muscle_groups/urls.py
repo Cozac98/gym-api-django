@@ -1,12 +1,12 @@
-from .views import ListCreateMuscleGroup, RetrieveUpdateDeleteMuscleGroup
 from django.urls import path
+from .views import MuscleGroupViewSet
 
 
 urlpatterns = [
-    path("", ListCreateMuscleGroup.as_view(), name="list-create-muscle-groups"),
+    path("", MuscleGroupViewSet.as_view({"get": "list", "post": "create"}), name="list-create-muscle-groups"),
     path(
         "<int:pk>/",
-        RetrieveUpdateDeleteMuscleGroup.as_view(),
+        MuscleGroupViewSet.as_view({"get": "retrieve", "put": "update", "delete": "destroy"}),
         name="list-create-muscle-groups",
     ),
 ]
