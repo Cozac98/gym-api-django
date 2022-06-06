@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "exercise",
     "routines",
     "muscle_groups",
+    "routine_day",
 ]
 
 MIDDLEWARE = [
