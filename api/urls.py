@@ -33,6 +33,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", include("authentication.urls")),
     path("exercise/", include("exercise.urls")),
+    path("routines/", include("routines.urls")),
     path("muscle_groups/", include("muscle_groups.urls")),
     re_path(
         r"^swagger/$",
