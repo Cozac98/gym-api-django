@@ -1,12 +1,13 @@
-from .views import ListCreateExercise, RetrieveUpdateDeleteExercise
 from django.urls import path
+
+from .views import ExerciseViewSet
 
 
 urlpatterns = [
-    path("", ListCreateExercise.as_view(), name="list-create-exercises"),
+    path("", ExerciseViewSet.as_view({"get": "list", "post": "create"}), name="list-create-exercises"),
     path(
         "<int:pk>/",
-        RetrieveUpdateDeleteExercise.as_view(),
+        ExerciseViewSet.as_view({"get": "retrieve", "put": "update", "delete": "destroy"}),
         name="list-create-exercises",
     ),
 ]

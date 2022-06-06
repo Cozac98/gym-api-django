@@ -1,24 +1,16 @@
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-
+from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
 from exercise.models import Exercise
 from exercise.serializers import ExerciseSerializer, ExerciseWithRelationSerializer
 
 # Create your views here.
-class ListCreateExercise(ListCreateAPIView):
+class ExerciseViewSet(viewsets.ModelViewSet):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer
-
-
-class RetrieveUpdateDeleteExercise(RetrieveUpdateDestroyAPIView):
-    queryset = Exercise.objects.all()
-    serializer_class = ExerciseWithRelationSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["muscle_group"]
 
     def get_serializer_class(self):
-        if self.request.method == "PUT":
-            return ExerciseSerializer
-        return self.serializer_class
-
-    def partial_update(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        if self.action == "retrieve":
+            return ExerciseWithRelationSerializer
+        return ExerciseSerializer
