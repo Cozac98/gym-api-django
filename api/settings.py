@@ -206,5 +206,3 @@ SWAGGER_SETTINGS = {
         "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
     }
 }
-import django_heroku
-django_heroku.settings(locals())
