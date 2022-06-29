@@ -33,7 +33,7 @@ SECRET_KEY = getenv("SECRET_JWT_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gym-austral-tp.herokuapp.com']
 
 
 # Application definition
