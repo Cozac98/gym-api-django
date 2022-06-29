@@ -33,7 +33,15 @@ SECRET_KEY = getenv("SECRET_JWT_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gym-austral-tp.herokuapp.com']
+ALLOWED_HOSTS = ['gym-austral-tp.herokuapp.com', "localhost", "127.0.0.1"]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://gym-austral-tp.herokuapp.com",
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
