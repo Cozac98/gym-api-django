@@ -1,3 +1,4 @@
+
 """
 Django settings for api project.
 
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     "exercise",
     "routines",
     "muscle_groups",
+    "routine_day",
 ]
 
 MIDDLEWARE = [
@@ -89,12 +91,11 @@ WSGI_APPLICATION = "api.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.db.backends.mysql",
         "NAME": getenv("DB_DATABASE"),
         "USER": getenv("DB_USR"),
         "PASSWORD": getenv("DB_PWD"),
         "HOST": getenv("DB_HOST"),
-        "PORT": getenv("DB_PORT"),
     }
 }
 
