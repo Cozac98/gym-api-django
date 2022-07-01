@@ -41,7 +41,7 @@ ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
 sqlparse==0.4.2
 tomli==2.0.1
-typing-extensions==4.2.0
+typing_extensions==4.2.0
 tzdata==2022.1
 uritemplate==4.1.1
 urllib3==1.26.9
