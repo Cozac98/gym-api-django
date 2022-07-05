@@ -35,9 +35,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['gym-austral-tp.herokuapp.com', "localhost", "127.0.0.1"]
 
-CORS_ALLOWED_ORIGINS = ["https://*", "http://*"]
-
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
