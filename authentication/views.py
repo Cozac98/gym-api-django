@@ -1,13 +1,7 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
 from .serializers import UserSerializer
-from drf_yasg.utils import swagger_auto_schema
 
-
-@swagger_auto_schema(method="POST", request_body=UserSerializer)
-@api_view(["POST"])
-def signup(request):
-    serializer = UserSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer.save()
-    return Response(serializer.data, status=201)
+class RegisterUserAPIView(generics.CreateAPIView):
+  permission_classes = [AllowAny]
+  serializer_class = UserSerializer
