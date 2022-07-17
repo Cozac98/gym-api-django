@@ -13,4 +13,6 @@ urlpatterns = [
     path("verify_token/", TokenVerifyView.as_view(), name="verify_token"),
     path("signup/", views.RegisterUserAPIView.as_view(), name="signup"),
     path("staff-signup/", views.RegisterStaffAPIView.as_view(), name="signup"),
+    path('me/', views.me),
+
 ]
