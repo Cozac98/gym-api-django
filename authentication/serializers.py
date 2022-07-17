@@ -13,6 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
     email = serializers.EmailField(required=True)
+    is_staff = serializers.BooleanField(read_only=True)
 
     def create(self, validated_data):
         user = UserModel(
@@ -35,6 +36,7 @@ class UserSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "email",
+            "is_staff"
         )
 
 class StaffSerializer(serializers.ModelSerializer):
