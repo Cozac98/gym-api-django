@@ -8,7 +8,7 @@ UserModel = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
 
-    username = serializers.IntegerField(required=True, min_value=1000000, max_value=99999999)
+    username = serializers.CharField(required=True, min_length=7, max_length=8)
     password = serializers.CharField(write_only=True, min_length=8)
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
@@ -40,7 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class StaffSerializer(serializers.ModelSerializer):
 
-    username = serializers.IntegerField(required=True, min_value=1000000, max_value=99999999)
+    username = serializers.CharField(required=True, min_length=7, max_length=8)
     password = serializers.CharField(write_only=True, min_length=8)
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
