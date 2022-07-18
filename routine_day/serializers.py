@@ -1,12 +1,14 @@
 from dataclasses import fields
 from rest_framework import serializers
 
+from routine_day_exercise.serializers import RoutineDayExerciseSerializerWithRelationship
+
 from .models import RoutineDay
-from routines.serializers import RoutineSerializer
+
 
 
 class RoutineDaySerializerWithRelationship(serializers.ModelSerializer):
-    routine = RoutineSerializer(read_only=True)
+    exercises = RoutineDayExerciseSerializerWithRelationship(read_only=True, many=True)
 
     class Meta:
         model = RoutineDay

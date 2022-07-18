@@ -1,3 +1,4 @@
+
 """gym URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,10 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.urls import path, re_path, include
 from drf_yasg import openapi
+from drf_yasg.generators import OpenAPISchemaGenerator
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
+
+
+class CustomSchemaGenerator(OpenAPISchemaGenerator):
+    def get_schema(self, request=None, public=False):
+        schema = super().get_schema(request, public)
+        schema.schemes = ["http", "https"]
+        return schema
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -27,18 +38,23 @@ schema_view = get_schema_view(
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
+    generator_class=CustomSchemaGenerator,
 )
 
+
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("auth/", include("authentication.urls")),
-    path("exercise/", include("exercise.urls")),
-    path("routines/", include("routines.urls")),
-    path("muscle_groups/", include("muscle_groups.urls")),
-    path("routine_day/", include("routine_day.urls")),
+    path("api/admin/", admin.site.urls),
+    path("api/auth/", include("authentication.urls")),
+    path("api/exercise/", include("exercise.urls")),
+    path("api/routines/", include("routines.urls")),
+    path("api/muscle_groups/", include("muscle_groups.urls")),
+    path("api/routine_day/", include("routine_day.urls")),
+    path("api/routine_day_exercise/", include("routine_day_exercise.urls")),
     re_path(
         r"^swagger/$",
         schema_view.with_ui("swagger", cache_timeout=0),
         name="schema-swagger-ui",
     ),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

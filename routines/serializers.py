@@ -1,10 +1,15 @@
 from rest_framework import serializers
 
+from routine_day.serializers import RoutineDaySerializerWithRelationship
+
 from routines.models import Routine
-from muscle_groups.serializers import MuscleGroupSerializer
 
 
 class RoutineSerializer(serializers.ModelSerializer):
+    routine_days = RoutineDaySerializerWithRelationship(read_only=True, many=True)
     class Meta:
         model = Routine
         fields = "__all__"
+
+class QuerySerializer(serializers.Serializer):
+    user_id = serializers.CharField()

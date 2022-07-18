@@ -1,13 +1,28 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .serializers import UserSerializer
-from drf_yasg.utils import swagger_auto_schema
+from rest_framework import generics, response
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+from rest_framework.decorators import api_view, permission_classes
+from django.contrib.auth.models import User
+from .serializers import StaffSerializer, UserSerializer
 
+class RegisterUserAPIView(generics.CreateAPIView):
+  permission_classes = [AllowAny]
+  serializer_class = UserSerializer
 
-@swagger_auto_schema(method="POST", request_body=UserSerializer)
-@api_view(["POST"])
-def signup(request):
-    serializer = UserSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    serializer.save()
-    return Response(serializer.data, status=201)
+class RegisterStaffAPIView(generics.CreateAPIView):
+  permission_classes = [AllowAny]
+  serializer_class = StaffSerializer
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def me(request):
+    return response.Response(UserSerializer(request.user).data, 200)
+
+@api_view(["GET"])
+@permission_classes([IsAdminUser])
+def users(request):
+    return response.Response(UserSerializer(request.user).data, 200)
+
+class GetUsersAPIView(generics.ListAPIView):
+  queryset = User.objects.all()
+  permission_classes = [IsAdminUser]
+  serializer_class = UserSerializer
