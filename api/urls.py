@@ -43,12 +43,12 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("auth/", include("authentication.urls")),
-    path("exercise/", include("exercise.urls")),
-    path("routines/", include("routines.urls")),
-    path("muscle_groups/", include("muscle_groups.urls")),
-    path("routine_day/", include("routine_day.urls")),
+    path("api/admin/", admin.site.urls),
+    path("api/auth/", include("authentication.urls")),
+    path("api/exercise/", include("exercise.urls")),
+    path("api/routines/", include("routines.urls")),
+    path("api/muscle_groups/", include("muscle_groups.urls")),
+    path("api/routine_day/", include("routine_day.urls")),
     re_path(
         r"^swagger/$",
         schema_view.with_ui("swagger", cache_timeout=0),
