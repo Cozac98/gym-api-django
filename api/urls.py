@@ -49,6 +49,7 @@ urlpatterns = [
     path("api/routines/", include("routines.urls")),
     path("api/muscle_groups/", include("muscle_groups.urls")),
     path("api/routine_day/", include("routine_day.urls")),
+    path("api/routine_day_exercise/", include("routine_day_exercise.urls")),
     re_path(
         r"^swagger/$",
         schema_view.with_ui("swagger", cache_timeout=0),

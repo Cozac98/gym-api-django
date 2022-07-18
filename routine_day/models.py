@@ -7,4 +7,3 @@ from exercise.models import Exercise
 class RoutineDay(models.Model):
     number_day = models.IntegerField(null=False)
     routine = models.ForeignKey(Routine, on_delete=models.CASCADE, related_name='routine_days')
-    exercises = models.ManyToManyField(Exercise)

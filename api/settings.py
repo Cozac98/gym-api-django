@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = getenv("SECRET_JWT_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['gym-austral-tp.herokuapp.com', "localhost", "127.0.0.1"]
 
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "routines",
     "muscle_groups",
     "routine_day",
+    "routine_day_exercise"
 ]
 
 MIDDLEWARE = [
