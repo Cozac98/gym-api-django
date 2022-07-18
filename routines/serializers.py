@@ -10,3 +10,6 @@ class RoutineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Routine
         fields = "__all__"
+
+class QuerySerializer(serializers.Serializer):
+    user_id = serializers.CharField()
