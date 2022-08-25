@@ -18,8 +18,20 @@ from datetime import timedelta
 from os import getenv
 from dotenv import load_dotenv
 
-load_dotenv(".env")
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
+load_dotenv(".env")
+if getenv("ENVIROMENT") != 'local':
+    sentry_sdk.init(
+        dsn="https://46ba8972a7804d7c91aeae12c1bdac73@o1377930.ingest.sentry.io/6689282",
+        integrations=[
+            DjangoIntegration(),
+        ],
+
+        traces_sample_rate=0.5,
+        send_default_pii=False
+    )
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
