@@ -29,7 +29,7 @@ if getenv("ENVIROMENT") != 'local':
             DjangoIntegration(),
         ],
 
-        traces_sample_rate=0.2,
+        traces_sample_rate=0.5,
         send_default_pii=False
     )
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
