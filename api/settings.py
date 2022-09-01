@@ -24,7 +24,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 load_dotenv(".env")
 if getenv("ENVIROMENT") != 'local':
     sentry_sdk.init(
-        dsn="https://46ba8972a7804d7c91aeae12c1bdac73@o1377930.ingest.sentry.io/6689282",
+        dsn=getenv("SENTRY_KEY"),
         integrations=[
             DjangoIntegration(),
         ],
