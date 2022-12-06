@@ -1,11 +1,15 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from django_filters.rest_framework import DjangoFilterBackend
 from routine_day.models import RoutineDay
 from .serializers import RoutineDaySerializerWithRelationship, RoutineDaySerializer
 
 class RoutineDayViewSet(viewsets.ModelViewSet):
     queryset = RoutineDay.objects.all()
     serializer_class = RoutineDaySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["routine"]
+
 
     def get_serializer_class(self):
         if self.action == "retrieve":
