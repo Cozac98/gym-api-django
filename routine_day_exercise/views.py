@@ -12,7 +12,7 @@ class RoutineDayExerciseViewSet(viewsets.ModelViewSet):
 
 
     def get_serializer_class(self):
-        if self.action == "retrieve":
+        if self.action in ("list", "retrieve"):
             return RoutineDayExerciseSerializerWithRelationship
         return RoutineDayExerciseSerializer
 

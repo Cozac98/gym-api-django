@@ -22,6 +22,6 @@ class RoutineViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def get_serializer_class(self):
-        if self.action == "retrieve":
+        if self.action in ("list", "retrieve"):
             return RoutineWithRelationSerializer
         return RoutineSerializer
